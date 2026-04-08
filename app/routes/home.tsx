@@ -9,8 +9,10 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useState } from "react";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, Sparkles, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 import { SERVICES, WORKS } from "~/lib/constants";
+import { useInView } from "framer-motion";
+import { useEffect } from "react";
 
 const ContactCTA = lazy(() => import("~/components/contactCta"));
 import { Link } from "react-router";
@@ -48,7 +50,22 @@ export default function Home() {
   const aboutRef = useRef(null);
   const servicesRef = useRef(null);
   const workRef = useRef(null);
+  const carouselRef = useRef(null);
   const [workIndex, setWorkIndex] = useState(0);
+  const [isAutoplay, setIsAutoplay] = useState(true);
+
+  // Auto-play logic
+  const isCarouselInView = useInView(carouselRef, { amount: 0.3 });
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isAutoplay && isCarouselInView) {
+      interval = setInterval(() => {
+        setWorkIndex((prev) => (prev + 1) % WORKS.length);
+      }, 6000);
+    }
+    return () => clearInterval(interval);
+  }, [isAutoplay, isCarouselInView]);
 
   // Hero Parallax
   const { scrollYProgress: heroScroll } = useScroll({
@@ -375,7 +392,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="text-sm font-bold tracking-[0.2em] uppercase text-white hover:text-SoftApricot transition-colors flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-SoftApricot/50"
+                className="hidden text-sm font-bold tracking-[0.2em] uppercase text-white hover:text-SoftApricot transition-colors md:flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-SoftApricot/50"
                 aria-label="View all projects in the work archive"
               >
                 View <span className="hidden md:block">Archive</span>{" "}
@@ -385,161 +402,173 @@ export default function Home() {
           </div>
 
           {/* Manual Stack Interaction Area */}
-          <div className="relative min-h-[80vh] flex flex-col items-center justify-center px-4 md:px-12 lg:px-24">
-            <div className="relative w-full max-w-5xl h-[65vh] md:h-[75vh]">
-              <AnimatePresence initial={false}>
-                {WORKS.slice(workIndex, workIndex + 3).map((work, idx) => {
-                  const isTop = idx === 0;
-                  const reverseIdx = 2 - idx; // Stacking order
-
-                  return (
-                    <motion.div
-                      key={work.client}
-                      onClick={() => !isTop && setWorkIndex(workIndex + idx)}
-                      drag={isTop ? "y" : false}
-                      dragConstraints={{ top: -500, bottom: 0 }}
-                      dragElastic={0.1}
-                      onDragEnd={(_, info) => {
-                        if (isTop && info.offset.y < -150) {
-                          setWorkIndex((prev) => prev + 1);
-                        }
-                      }}
-                      initial={{
-                        opacity: 0,
-                        scale: 1 - idx * 0.04,
-                        y: -idx * 24,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        scale: 1 - idx * 0.04,
-                        y: -idx * 24, // Use negative Y to stack from top down visually
-                        zIndex: reverseIdx,
-                      }}
-                      exit={{
-                        y: -800,
-                        opacity: 0,
-                        scale: 1.1,
-                        rotate: (Math.random() - 0.5) * 10,
-                        transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-                      }}
-                      style={{
-                        filter: `brightness(${1 - idx * 0.1})`,
-                        touchAction: isTop ? "none" : "auto",
-                      }}
-                      className="absolute inset-x-0 bottom-0 top-12 rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-[#1a1a1a] border border-white/10 shadow-[0_-20px_60px_rgba(0,0,0,0.4)] group cursor-grab active:cursor-grabbing"
-                    >
-                      {/* Image background with less opacity to show grey bg */}
-                      <motion.img
-                        src={work.image}
-                        alt={work.client}
-                        className="absolute inset-0 w-full h-full object-cover opacity-30 blur-[2px] md:blur-0 group-hover:scale-105 transition-transform duration-1000"
-                        draggable={false}
-                      />
-
-                      {/* Cinematic Gradient Overlay */}
-                      <div className="absolute inset-0 bg-linear-to-b from-black/20 via-[#0a0a0a]/40 to-[#0a0a0a] z-10" />
-
-                      <div className="absolute inset-0 p-10 md:p-20 flex flex-col justify-end z-20">
-                        {isTop && (
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 0.4 }}
-                            className="absolute top-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
-                          >
-                            <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-white">
-                              Swipe Up
-                            </span>
-                            <div className="w-px h-8 bg-white/40 animate-pulse" />
-                          </motion.div>
-                        )}
-
-                        <div className="max-w-3xl">
-                          {/* Heading structure inspired by SOHub */}
-                          <div className="mb-10">
-                            <h3 className="text-5xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-white leading-[0.85]">
-                              {work.client.split(" ").map((word, i) => (
-                                <span
-                                  key={i}
-                                  className={
-                                    i % 2 === 1
-                                      ? "text-white/40 block"
-                                      : "block"
-                                  }
-                                >
-                                  {word}
-                                </span>
-                              ))}
-                            </h3>
-                          </div>
-
-                          {/* Chips/Tags */}
-                          <div className="flex flex-wrap gap-2 mb-10">
-                            <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest uppercase text-white/50">
-                              {work.role}
-                            </span>
-                            <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest uppercase text-white/50">
-                              <a
-                                href={work.site}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                View Site
-                              </a>
-                            </span>
-                          </div>
-
-                          {/* Description with Icon */}
-                          <div className="flex items-start gap-4">
-                            <div className="mt-1 text-SoftApricot shrink-0">
-                              <Sparkles size={20} />
-                            </div>
-                            <p className="text-lg md:text-2xl text-white/80 font-medium leading-[1.3] tracking-tight max-w-2xl">
-                              {work.desc}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-
-                {workIndex >= WORKS.length && (
+          {/* Apple-inspired Horizontal Carousel */}
+          <div
+            ref={carouselRef}
+            className="relative w-full overflow-hidden"
+          >
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
+              <div className="relative h-[70vh] md:h-[80vh] w-full items-center">
+                <AnimatePresence mode="wait">
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="flex flex-col items-center justify-center h-full gap-8 px-6 text-center"
+                    key={workIndex}
+                    initial={{ opacity: 0, x: 100, scale: 0.95 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -100, scale: 0.95 }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute inset-0 flex flex-col lg:flex-row items-center gap-12"
                   >
-                    <p className="text-white/40 uppercase tracking-[0.4em] font-bold text-sm">
-                      End of Chapter
-                    </p>
-                    <MotionLink
-                      to="/work"
-                      className="px-12 py-6 rounded-full border border-SoftApricot/30 text-SoftApricot uppercase font-bold tracking-widest hover:bg-SoftApricot hover:text-black transition-all bg-white/5 backdrop-blur-xl"
-                    >
-                      Browse All Projects
-                    </MotionLink>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                    {/* Visual Side */}
+                    <div className="relative w-full lg:w-3/5 h-[40vh] lg:h-full rounded-[2.5rem] md:rounded-[4rem] overflow-hidden group">
+                      <motion.img
+                        initial={{ scale: 1.2 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                        src={WORKS[workIndex].image}
+                        alt={WORKS[workIndex].client}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+                      
+                      {/* Floating Site Link */}
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                        className="absolute bottom-8 right-8 z-20"
+                      >
+                        <a
+                          href={WORKS[workIndex].site}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition-transform shadow-2xl"
+                        >
+                          <ArrowUpRight size={24} />
+                        </a>
+                      </motion.div>
+                    </div>
 
-            {/* Progress Indicators */}
-            {workIndex < WORKS.length && (
-              <div className="mt-16 flex gap-2">
-                {WORKS.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setWorkIndex(i)}
-                    className={`h-1 rounded-full border-none p-1 appearance-none transition-all duration-500 cursor-pointer ${
-                      i === workIndex
-                        ? "w-12 bg-SoftApricot"
-                        : "w-4 bg-white/10 hover:bg-white/20"
-                    }`}
-                    aria-label={`Go to project ${i + 1}`}
-                  />
-                ))}
+                    {/* Content Side */}
+                    <div className="w-full lg:w-2/5 flex flex-col justify-center gap-8 lg:pr-12">
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="space-y-4"
+                      >
+                        <span className="text-SoftApricot font-mono text-xs tracking-[0.4em] uppercase opacity-60">
+                          {String(workIndex + 1).padStart(2, "0")} / {String(WORKS.length).padStart(2, "0")}
+                        </span>
+                        <h3 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9]">
+                          {WORKS[workIndex].client.split(" ").map((word, i) => (
+                            <span key={i} className={i % 2 === 1 ? "text-white/30 block" : "block"}>
+                              {word}
+                            </span>
+                          ))}
+                        </h3>
+                      </motion.div>
+
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="flex flex-wrap gap-3"
+                      >
+                        <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest uppercase text-white/50">
+                          {WORKS[workIndex].role}
+                        </span>
+                        {WORKS[workIndex].stack?.slice(0, 3).map((s) => (
+                          <span key={s} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest uppercase text-white/30">
+                            {s}
+                          </span>
+                        ))}
+                      </motion.div>
+
+                      <motion.p 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                        className="text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-md"
+                      >
+                        {WORKS[workIndex].desc}
+                      </motion.p>
+
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 }}
+                      >
+                        <MotionLink
+                          to={`/work/${WORKS[workIndex].client.split(" ").join("-").toLowerCase()}`}
+                          className="inline-flex items-center gap-4 text-xs font-bold tracking-[0.3em] uppercase group"
+                        >
+                          <span className="relative pb-1">
+                            Explore Case Study
+                            <span className="absolute bottom-0 left-0 w-full h-px bg-SoftApricot origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                          </span>
+                          <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                            <ChevronRight size={16} />
+                          </div>
+                        </MotionLink>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
-            )}
+
+              {/* Enhanced Controls */}
+              <div className="mt-20 flex flex-col md:flex-row items-center justify-between gap-12 border-t border-white/5 pt-12">
+                {/* Manual Navigation */}
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => setWorkIndex((prev) => (prev - 1 + WORKS.length) % WORKS.length)}
+                    className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group"
+                  >
+                    <ChevronLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
+                  </button>
+                  <button
+                    onClick={() => setWorkIndex((prev) => (prev + 1) % WORKS.length)}
+                    className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group"
+                  >
+                    <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
+                  </button>
+                  
+                  <div className="w-px h-8 bg-white/10 mx-2" />
+                  
+                  <button
+                    onClick={() => setIsAutoplay(!isAutoplay)}
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-white/40 hover:text-white transition-colors"
+                    aria-label={isAutoplay ? "Pause Autoplay" : "Play Autoplay"}
+                  >
+                    {isAutoplay ? <Pause size={18} /> : <Play size={18} />}
+                  </button>
+                </div>
+
+                {/* Scrubber Style Indicators */}
+                <div className="flex gap-3">
+                  {WORKS.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setWorkIndex(i)}
+                      className="group relative py-4"
+                      aria-label={`Go to project ${i + 1}`}
+                    >
+                      <div className="h-0.5 w-12 md:w-16 bg-white/10 rounded-full overflow-hidden transition-all duration-500 group-hover:bg-white/20">
+                        {i === workIndex && (
+                          <motion.div
+                            layoutId="indicator"
+                            className="h-full bg-SoftApricot"
+                            initial={{ width: 0 }}
+                            animate={{ width: "100%" }}
+                            transition={{ duration: isAutoplay ? 6 : 0.8, ease: "linear" }}
+                          />
+                        )}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

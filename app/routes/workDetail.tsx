@@ -133,7 +133,7 @@ export default function WorkDetail() {
               style={{ scale: videoScale, rotateX: videoRotate }}
               className="max-w-[1400px] mx-auto px-6 md:px-12 my-32 relative z-10"
             >
-              <div className="relative group rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-white/5 border border-white/10 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] aspect-video lg:aspect-21/9 perspective-1000">
+              <div className="relative group rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-white/5 border border-white/10 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] perspective-1000">
                 <video
                   ref={videoRef}
                   src={selectedWork?.video}
@@ -141,7 +141,7 @@ export default function WorkDetail() {
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto block"
                 />
 
                 {/* Cinematic Overlay Vignette */}
@@ -150,7 +150,7 @@ export default function WorkDetail() {
                 {/* Apple-style Bottom Controls */}
                 <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-4 z-30">
                   {/* Progress Pill */}
-                  <div className="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-full h-12 flex items-center px-6 gap-2 group/progress relative overflow-hidden transition-all duration-500 hover:bg-white/15">
+                  <div className="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-full h-8 md:h-12 flex items-center px-6 gap-2 group/progress relative overflow-hidden transition-all duration-500 hover:bg-white/15">
                     {/* Scene Dots */}
                     {[1, 2, 3, 4, 5, 6].map((i) => (
                       <div
@@ -173,7 +173,7 @@ export default function WorkDetail() {
                   {/* Play/Pause Button */}
                   <button
                     onClick={togglePlay}
-                    className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center border border-white/20 hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl"
+                    className="w-8 md:w-12 h-8 md:h-12 rounded-full bg-white text-black flex items-center justify-center border border-white/20 hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl"
                     aria-label={isPlaying ? "Pause" : "Play"}
                   >
                     <AnimatePresence mode="wait" initial={false}>
