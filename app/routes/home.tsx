@@ -9,7 +9,13 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useState } from "react";
-import { ArrowUpRight, Sparkles, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
+import {
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+} from "lucide-react";
 import { SERVICES, WORKS } from "~/lib/constants";
 import { useInView } from "framer-motion";
 import { useEffect } from "react";
@@ -403,10 +409,7 @@ export default function Home() {
 
           {/* Manual Stack Interaction Area */}
           {/* Apple-inspired Horizontal Carousel */}
-          <div
-            ref={carouselRef}
-            className="relative w-full overflow-hidden"
-          >
+          <div ref={carouselRef} className="relative w-full overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
               <div className="relative h-[70vh] md:h-[80vh] w-full items-center">
                 <AnimatePresence mode="wait">
@@ -429,9 +432,9 @@ export default function Home() {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-                      
+
                       {/* Floating Site Link */}
-                      <motion.div 
+                      <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
@@ -450,25 +453,31 @@ export default function Home() {
 
                     {/* Content Side */}
                     <div className="w-full lg:w-2/5 flex flex-col justify-center gap-8 lg:pr-12">
-                      <motion.div 
+                      <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                         className="space-y-4"
                       >
                         <span className="text-SoftApricot font-mono text-xs tracking-[0.4em] uppercase opacity-60">
-                          {String(workIndex + 1).padStart(2, "0")} / {String(WORKS.length).padStart(2, "0")}
+                          {String(workIndex + 1).padStart(2, "0")} /{" "}
+                          {String(WORKS.length).padStart(2, "0")}
                         </span>
                         <h3 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9]">
                           {WORKS[workIndex].client.split(" ").map((word, i) => (
-                            <span key={i} className={i % 2 === 1 ? "text-white/30 block" : "block"}>
+                            <span
+                              key={i}
+                              className={
+                                i % 2 === 1 ? "text-white/30 block" : "block"
+                              }
+                            >
                               {word}
                             </span>
                           ))}
                         </h3>
                       </motion.div>
 
-                      <motion.div 
+                      <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
@@ -478,13 +487,16 @@ export default function Home() {
                           {WORKS[workIndex].role}
                         </span>
                         {WORKS[workIndex].stack?.slice(0, 3).map((s) => (
-                          <span key={s} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest uppercase text-white/30">
+                          <span
+                            key={s}
+                            className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest uppercase text-white/30"
+                          >
                             {s}
                           </span>
                         ))}
                       </motion.div>
 
-                      <motion.p 
+                      <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
@@ -521,20 +533,32 @@ export default function Home() {
                 {/* Manual Navigation */}
                 <div className="flex items-center gap-4">
                   <button
-                    onClick={() => setWorkIndex((prev) => (prev - 1 + WORKS.length) % WORKS.length)}
+                    onClick={() =>
+                      setWorkIndex(
+                        (prev) => (prev - 1 + WORKS.length) % WORKS.length,
+                      )
+                    }
                     className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group"
                   >
-                    <ChevronLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
+                    <ChevronLeft
+                      size={24}
+                      className="group-hover:-translate-x-1 transition-transform"
+                    />
                   </button>
                   <button
-                    onClick={() => setWorkIndex((prev) => (prev + 1) % WORKS.length)}
+                    onClick={() =>
+                      setWorkIndex((prev) => (prev + 1) % WORKS.length)
+                    }
                     className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group"
                   >
-                    <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
+                    <ChevronRight
+                      size={24}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
                   </button>
-                  
+
                   <div className="w-px h-8 bg-white/10 mx-2" />
-                  
+
                   <button
                     onClick={() => setIsAutoplay(!isAutoplay)}
                     className="w-10 h-10 rounded-full flex items-center justify-center text-white/40 hover:text-white transition-colors"
@@ -560,7 +584,10 @@ export default function Home() {
                             className="h-full bg-SoftApricot"
                             initial={{ width: 0 }}
                             animate={{ width: "100%" }}
-                            transition={{ duration: isAutoplay ? 6 : 0.8, ease: "linear" }}
+                            transition={{
+                              duration: isAutoplay ? 6 : 0.8,
+                              ease: "linear",
+                            }}
                           />
                         )}
                       </div>

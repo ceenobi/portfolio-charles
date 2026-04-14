@@ -7,7 +7,6 @@ import { WORKS } from "~/lib/constants";
 import { GradualSpacing } from "~/components/gradualSpacing";
 import { Play, Pause } from "lucide-react";
 
-const ContactCTA = lazy(() => import("~/components/contactCta"));
 
 export function meta({ params }: { params: { workId: string } }) {
   return [
@@ -273,12 +272,6 @@ export default function WorkDetail() {
               </div>
             </div>
           </PageSection>
-
-          {/* <PageSection index={4}>
-            <div className="relative z-10 pb-40">
-              <ContactCTA />
-            </div>
-          </PageSection> */}
         </PageWrapper>
       </Suspense>
     </div>
