@@ -8,6 +8,7 @@ import {
 } from "react-router";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Analytics } from "@vercel/analytics/react";
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -40,6 +41,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <Analytics />
       </body>
     </html>
   );
