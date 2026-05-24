@@ -80,10 +80,15 @@ export const WORKS = [
       "https://res.cloudinary.com/ceenobi/image/upload/f_webp,q_auto/v1779645390/clientproject/cobi/Macbook-Air-jaagastudios.com_ez3iyw.webp",
     video:
       "https://res.cloudinary.com/ceenobi/video/upload/f_mp4,q_auto,vc_auto/v1779644755/clientproject/cobi/Macbook-Air-jaagastudios.com-buyr9lhvmey8ob_t5cibj.mp4",
-    desc: "Crafting immersive full-stack solutions for ECHOES, pushing the boundaries of what's possible on the modern web.",
+    desc: "Engineering the Future of African Cinematic Universes.",
     summary:
       "Jaagastudios is a vfx and animation production company based in Nigeria. I designed and developed their website to showcase their vfx arts and projects.",
-    stack: ["Next.js", "Tailwind CSS", "Shadcn/ui"],
+    stack: [
+      "React Router 7 Framework",
+      "Tailwind CSS",
+      "Shadcn/ui",
+      "Framer motion",
+    ],
   },
 ];
 

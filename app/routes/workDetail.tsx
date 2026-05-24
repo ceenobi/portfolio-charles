@@ -24,6 +24,7 @@ export default function WorkDetail() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isWaiting, setIsWaiting] = useState(true);
   const [progress, setProgress] = useState(0);
 
   const selectedWork = WORKS.find(
@@ -119,7 +120,7 @@ export default function WorkDetail() {
           </PageSection>
 
           <PageSection index={1}>
-            <div className="max-w-[1350px] mx-auto px-6 md:px-12">
+            <div className="max-w-337.5 mx-auto px-6 md:px-12">
               <GradualSpacing
                 text={selectedWork?.desc || ""}
                 className="text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.2] text-white/90"
@@ -130,7 +131,7 @@ export default function WorkDetail() {
           <PageSection index={2}>
             <motion.div
               style={{ scale: videoScale, rotateX: videoRotate }}
-              className="max-w-[1400px] mx-auto px-6 md:px-12 my-32 relative z-10"
+              className="max-w-350 mx-auto px-6 md:px-12 my-32 relative z-10"
             >
               <div className="relative group rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-white/5 border border-white/10 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] perspective-1000">
                 <video
@@ -141,7 +142,24 @@ export default function WorkDetail() {
                   muted
                   playsInline
                   className="w-full h-auto block"
+                  onWaiting={() => setIsWaiting(true)}
+                  onPlaying={() => setIsWaiting(false)}
+                  onCanPlay={() => setIsWaiting(false)}
                 />
+
+                {/* Loading Indicator */}
+                <AnimatePresence>
+                  {isWaiting && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm z-20"
+                    >
+                      <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* Cinematic Overlay Vignette */}
                 <div className="absolute inset-0 bg-linear-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
@@ -213,7 +231,7 @@ export default function WorkDetail() {
           </PageSection>
 
           <PageSection index={3}>
-            <div className="max-w-[1350px] mx-auto px-6 md:px-12 pb-60 relative z-10">
+            <div className="max-w-337.5 mx-auto px-6 md:px-12 pb-60 relative z-10">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
                 {/* Left: Summary */}
                 <div className="lg:col-span-8">
