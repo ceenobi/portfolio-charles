@@ -73,14 +73,16 @@ export const WORKS = [
     stack: ["Bootstrap", "React Player", "TMDB Api"],
   },
   {
-    client: "ECHOES",
-    role: "Creative Engineering",
-    site: "https://bcc007pay.vercel.app/",
+    client: "JAAGASTUDIOS",
+    role: "Client Portfolio",
+    site: "https://jaagastudios.com/",
     image:
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&q=80&w=2400",
-    desc: " Crafting immersive full-stack solutions for ECHOES, pushing the boundaries of what's possible on the modern web.",
+      "https://res.cloudinary.com/ceenobi/image/upload/f_webp,q_auto/v1779645390/clientproject/cobi/Macbook-Air-jaagastudios.com_ez3iyw.webp",
+    video:
+      "https://res.cloudinary.com/ceenobi/video/upload/f_mp4,q_auto,vc_auto/v1779644755/clientproject/cobi/Macbook-Air-jaagastudios.com-buyr9lhvmey8ob_t5cibj.mp4",
+    desc: "Crafting immersive full-stack solutions for ECHOES, pushing the boundaries of what's possible on the modern web.",
     summary:
-      "ECHOES is a project that I worked on to showcase my skills in full stack development and creative engineering. It is a project that I am proud of and I believe that it showcases my skills in full stack development and creative engineering.",
+      "Jaagastudios is a vfx and animation production company based in Nigeria. I designed and developed their website to showcase their vfx arts and projects.",
     stack: ["Next.js", "Tailwind CSS", "Shadcn/ui"],
   },
 ];
