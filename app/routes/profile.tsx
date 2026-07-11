@@ -128,7 +128,7 @@ export default function Profile() {
                     }}
                     className="w-full h-full"
                   >
-                    <ImageComponent cellValue="https://res.cloudinary.com/ceenobi/image/upload/f_auto,q_auto/v1690431232/estore/md27lonxlfq9gcextkys.jpg" />
+                    <ImageComponent cellValue="https://res.cloudinary.com/ceenobi/image/upload/e_auto_brightness,f_auto,q_auto:best/v1690431746/j10ds7i8ielczamzxmta.webp" />
                   </motion.div>
 
                   {/* Subtle Overlay Glow */}

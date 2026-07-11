@@ -220,7 +220,7 @@ export default function Home() {
         id="about"
         className="py-60 px-6 md:px-12 lg:px-24 bg-[#0a0a0a] relative z-10"
       >
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-350 mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-3">
               <motion.div
@@ -277,7 +277,7 @@ export default function Home() {
         id="services"
         className="relative z-10 bg-[#0a0a0a] pb-40"
       >
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
+        <div className="max-w-350 mx-auto px-6 md:px-12 lg:px-24">
           <div className="mb-32 flex items-end justify-between">
             <div>
               <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-SoftApricot mb-6">
@@ -381,7 +381,7 @@ export default function Home() {
 
         {/* Layer 2 (Foreground): The Stacking Deck */}
         <div className="relative z-10 w-full pt-[40vh] pb-40">
-          <div className="max-w-[1350px] mx-auto px-6 md:px-12 lg:px-24 mb-20 border-b border-white/5 pb-8">
+          <div className="max-w-337.5 mx-auto px-6 md:px-12 lg:px-24 mb-20 border-b border-white/5 pb-8">
             <div className="flex justify-between items-center">
               <motion.h2
                 style={{ x: workTitleX }}
@@ -410,7 +410,7 @@ export default function Home() {
           {/* Manual Stack Interaction Area */}
           {/* Apple-inspired Horizontal Carousel */}
           <div ref={carouselRef} className="relative w-full overflow-hidden">
-            <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
+            <div className="max-w-350 mx-auto px-6 md:px-12 lg:px-24">
               <div className="relative h-[70vh] md:h-[80vh] w-full items-center">
                 <AnimatePresence mode="wait">
                   <motion.div

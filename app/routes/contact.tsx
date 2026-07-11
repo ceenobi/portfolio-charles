@@ -1,19 +1,26 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Form, useActionData, useNavigation } from "react-router";
 import { Resend } from "resend";
-import { PageSection, PageWrapper } from "~/components/pageWrapper";
 import ImageComponent from "~/components/imageComponent";
+import { PageSection, PageWrapper } from "~/components/pageWrapper";
 
 export function meta() {
   return [
-    { title: "Contact Charles Mbachu — Let's Create Something Extraordinary Together" },
+    {
+      title:
+        "Contact Charles Mbachu — Let's Create Something Extraordinary Together",
+    },
     {
       name: "description",
       content:
         "Get in touch with Charles Mbachu, a specialized Full Stack Web Developer and Creative Technologist. Available for new projects, collaborations, and high-end technical direction.",
     },
-    { name: "keywords", content: "web developer lagos, creative developer, contact, hire developer, full stack engineer" },
+    {
+      name: "keywords",
+      content:
+        "web developer lagos, creative developer, contact, hire developer, full stack engineer",
+    },
   ];
 }
 
@@ -224,7 +231,7 @@ export default function Contact() {
                 duration: 1.2,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="absolute right-[-10%] md:right-0 lg:right-[5%] top-[15%] md:top-[10%] lg:top-[5%] w-[65vw] md:w-[45vw] lg:w-[35vw] max-w-[500px] z-30 pointer-events-auto cursor-pointer drop-shadow-[0_50px_100px_rgba(0,0,0,0.8)]"
+              className="absolute right-[-10%] md:right-0 lg:right-[5%] top-[15%] md:top-[10%] lg:top-[5%] w-[65vw] md:w-[45vw] lg:w-[35vw] max-w-125 z-30 pointer-events-auto cursor-pointer drop-shadow-[0_50px_100px_rgba(0,0,0,0.8)]"
             >
               <div className="relative aspect-4/3 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl bg-black/50 group">
                 <motion.div
@@ -232,7 +239,7 @@ export default function Contact() {
                   transition={{ duration: 0.4 }}
                   className="absolute inset-0 bg-linear-to-tr from-white/5 to-white/20 backdrop-blur-md z-10 mix-blend-overlay"
                 />
-                <ImageComponent cellValue="https://res.cloudinary.com/ceenobi/image/upload/f_auto,q_auto/v1690431232/estore/md27lonxlfq9gcextkys.jpg" />
+                <ImageComponent cellValue="https://res.cloudinary.com/ceenobi/image/upload/e_auto_brightness,f_auto,q_auto:best/v1690431746/j10ds7i8ielczamzxmta.webp" />
               </div>
             </motion.div>
 
@@ -409,7 +416,11 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    aria-label={isSubmitting ? "Sending your message" : "Send your message to Charles"}
+                    aria-label={
+                      isSubmitting
+                        ? "Sending your message"
+                        : "Send your message to Charles"
+                    }
                     className="mt-4 group relative self-start overflow-hidden rounded-full bg-white px-12 py-5 transition-transform duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
                     <span className="relative z-10 flex items-center gap-3 text-sm md:text-base font-bold text-black uppercase tracking-widest">
