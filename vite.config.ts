@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
   build: {
     ssr: true,
-    sourcemap: true,
+    // sourcemaps are disabled in production to avoid exposing server code
     target: "esnext",
     minify: "esbuild",
     reportCompressedSize: true,
