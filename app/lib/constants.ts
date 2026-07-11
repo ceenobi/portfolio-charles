@@ -69,7 +69,7 @@ export const WORKS = [
       "https://res.cloudinary.com/ceenobi/video/upload/q_auto/f_auto/v1775430254/clientproject/cobi/Macbook-Air-tmdbmoviez.netlify.app-d86lf_nfnfoygr_vafxel.webm",
     desc: "TMDB MOVIES is a movie website that allows users to search for movies and TV shows. A good way to showcase strong understanding of api integration and creative design.",
     summary:
-      "To understand working with Api's I decided to build this project. It allows users to search for movies and TV shows. It also has a feature that allows users to watch movie and tv shows trailers. It was a fun project to build.",
+      "To understand working with Api's, I decided to build this project. It allows users to search for movies and TV shows. It also has a feature that allows users to watch movie and tv shows trailers. It was a fun project to build.",
     stack: ["Bootstrap", "React Player", "TMDB Api"],
   },
   {
