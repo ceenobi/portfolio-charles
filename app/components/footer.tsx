@@ -37,7 +37,7 @@ export default function Footer() {
           </svg>
         </a>
         <a
-          href="https://drive.google.com/file/d/1TtXjOjxclYDdNS1DcdOHV7dO20eCmjyE/view?usp=sharing"
+          href="https://drive.google.com/file/d/1mlFjSysqJCAq61OJa_8wvkoYKz9fZcuv/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="group"
