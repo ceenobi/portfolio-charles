@@ -28,7 +28,7 @@ export const WORKS = [
   {
     client: "BCC007 Alumni",
     role: "Full Stack & Creative Design",
-    site: "https://bcc007pay.vercel.app/",
+    site: "https://bcc007-portal.vercel.app/",
     image:
       "https://res.cloudinary.com/ceenobi/image/upload/c_crop,e_enhance,f_auto,q_auto/v1775423327/clientproject/cobi/Macbook-Air-bcc007pay.vercel.app_zowlvq.png",
     video:
@@ -60,6 +60,19 @@ export const WORKS = [
     stack: ["Next.js", "Tailwind CSS", "Shadcn/ui"],
   },
   {
+    client: "Techstudio InternHub",
+    role: "Fullstack developer",
+    site: "https://tsa-internhub.vercel.app/",
+    image:
+      "https://res.cloudinary.com/ceenobi/image/upload/v1786430624/clientproject/cobi/iPad-Air-4-tsa-internhub.vercel.app_dfma4w.webp",
+    video:
+      "https://res.cloudinary.com/ceenobi/video/upload/v1786430625/clientproject/cobi/Macbook-Air-tsa-internhub.vercel.app-ehfzst7vg3i3nu_ggj427.webm",
+    desc: "Techstudio Academy Internship tracker program for interns. View, complete tasks, get graded, and collaborate on final project.",
+    summary:
+      "Techstudio InternHub is a sub product of Techstudio Academy who is a leading provider of technology education and training. I worked on the fullstack development of the website, creating a seamless and intuitive user experience for interns to track their progress and collaborate on final projects.",
+    stack: ["React Router 8 Framework", "Tailwind CSS", "Shadcn/ui", "Upstash", "Better-Auth"],
+  },
+  { 
     client: "TMDB MOVIES",
     role: "Frontend & Creative Design",
     site: "https://tmdbmoviez.netlify.app/",
