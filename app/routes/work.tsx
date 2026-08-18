@@ -1,16 +1,19 @@
-import { lazy, Suspense, useRef } from "react";
-import type { Route } from "./+types/work";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { PageSection, PageWrapper } from "~/components/pageWrapper";
-import { WORKS } from "~/lib/constants";
-import SuspenseUi from "~/components/suspenseUi";
+import { lazy, Suspense, useRef } from "react";
 import ContactCTA from "~/components/contactCta";
+import { PageSection, PageWrapper } from "~/components/pageWrapper";
+import SuspenseUi from "~/components/suspenseUi";
+import { WORKS } from "~/lib/constants";
+import type { Route } from "./+types/work";
 
 const WorkCards = lazy(() => import("~/components/workCards"));
 
-export function meta({}: Route.MetaArgs) {
+export function meta(_args: Route.MetaArgs) {
   return [
-    { title: "Selected Works — Charles Mbachu | Creative Developer & Full Stack Engineer" },
+    {
+      title:
+        "Selected Works — Charles Mbachu | Creative Developer & Full Stack Engineer",
+    },
     {
       name: "description",
       content:

@@ -86,6 +86,24 @@ export const WORKS = [
     stack: ["Bootstrap", "React Player", "TMDB Api"],
   },
   {
+    client: "Navis Marine Services Ltd",
+    role: "Frontend & Creative Design",
+    site: "https://navismarineservicesltd.com/",
+    image:
+      "https://res.cloudinary.com/ceenobi/image/upload/f_auto,q_auto/v1787088410/clientproject/cobi/iPad-Mini-navismarineservicesltd.com_ehbe44.webp",
+    video:
+      "https://res.cloudinary.com/ceenobi/video/upload/f_auto,q_auto/v1787087589/clientproject/cobi/Macbook-Air-navismarineservicesltd.com-lm2o2i85043k0g_dsniqi.webm",
+    desc: "Supporting Global Shipping. Delivering Local Excellence.",
+    summary:
+      "Navis Marine Services Ltd delivers premium Ship Agency, Marine Consultancy, HSSEQ, Marine Procurement and Integrated Maritime Solutions to shipowners, operators, charterers and offshore industries—connecting global shipping with trusted local expertise.",
+    stack: [
+      "React Router 7 Framework",
+      "Tailwind CSS",
+      "Shadcn/ui",
+      "GSAP",
+    ],
+  },
+  {
     client: "JAAGASTUDIOS",
     role: "Client Portfolio",
     site: "https://jaagastudios.com/",
