@@ -28,7 +28,7 @@ export const WORKS = [
   {
     client: "BCC007 Alumni",
     role: "Full Stack & Creative Design",
-    site: "https://bcc007-portal.vercel.app/",
+    site: "https://bcc007-group.org/",
     image:
       "https://res.cloudinary.com/ceenobi/image/upload/c_crop,e_enhance,f_auto,q_auto/v1775423327/clientproject/cobi/Macbook-Air-bcc007pay.vercel.app_zowlvq.png",
     video:
@@ -72,7 +72,7 @@ export const WORKS = [
       "Techstudio InternHub is a sub product of Techstudio Academy who is a leading provider of technology education and training. I worked on the fullstack development of the website, creating a seamless and intuitive user experience for interns to track their progress and collaborate on final projects.",
     stack: ["React Router 8 Framework", "Tailwind CSS", "Shadcn/ui", "Upstash", "Better-Auth"],
   },
-  { 
+  {
     client: "TMDB MOVIES",
     role: "Frontend & Creative Design",
     site: "https://tmdbmoviez.netlify.app/",
